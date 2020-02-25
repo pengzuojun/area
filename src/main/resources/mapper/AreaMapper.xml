@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pengzuojun.dao.AreaDao">
+
+    <resultMap id="BaseResultMap" type="pengzuojun.domain.Area">
+        <result column="areaId" jdbcType="INTEGER" property="areaId" />
+        <result column="areaName" jdbcType="VARCHAR" property="areaName" />
+        <result column="createTime" jdbcType="VARCHAR" property="createTime" />
+        <result column="editTime" jdbcType="VARCHAR" property="editTime" />
+    </resultMap>
+
+    <select id="queryAreas" resultType="pengzuojun.domain.Area">
+        select * from area
+    </select>
+
+    <select id="queryAreaById" resultType="pengzuojun.domain.Area" parameterType="Integer">
+        select * from area where areaId=#{areaId}
+    </select>
+
+    <insert id="addArea" parameterType="pengzuojun.domain.Area">
+        insert into area(areaId, areaName, priority, editTime)
+        values (#{areaId}, #{areaName}, #{priority}, #{editTime})
+    </insert>
+
+    <delete id="deleteArea" parameterType="Integer">
+        delete from area where areaId=#{areaId}
+    </delete>
+
+    <update id="updateArea" parameterType="pengzuojun.domain.Area">
+        update area
+        <trim prefix="set" suffixOverrides=",">
+            <if test="areaName!=null&amp;&amp;!&quot;&quot;.equals(areaName)">areaName=#{areaName},</if>
+            <if test="editTime!=null&amp;&amp;!&quot;&quot;.equals(editTime)">editTime=#{editTime},</if>
+        </trim>
+        where areaId=#{areaId}
+    </update>
+
+</mapper>
