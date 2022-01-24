@@ -3,7 +3,7 @@ package pengzuojun.domain;
 import java.util.Date;
 
 /**
- * 区域实体类
+ * 区域实体类 2022-01-24
  */
 public class Area {
     private Integer areaId;
